@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'; // Loader per le traduzioni HTTP
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Factory function per il loader delle traduzioni HTTP
 export function HttpLoaderFactory(http: HttpClient) {
@@ -20,6 +21,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, // Importa il modulo per la gestione delle richieste HTTP
+    TranslateModule.forRoot({
+      loader: { // Configurazione del loader delle traduzioni
+        provide: TranslateHttpLoader, // Fornisce il TranslateHttpLoader per caricare le traduzioni
+        useFactory: HttpLoaderFactory, // Utilizza la factory function HttpLoaderFactory per creare l'istanza del loader
+        deps: [HttpClient] // Dipendenza necessaria per la factory function (HttpClient)
+      }
+    })
   ],
   providers: [], // Fornitori di servizi
   bootstrap: [AppComponent]
