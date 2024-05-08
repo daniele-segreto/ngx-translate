@@ -13,7 +13,7 @@ export class AppComponent {
   }
 
   // Metodo per cambiare la lingua dell'applicazione
-  switchLangueage(language: string) {
+  switchLanguage(language: string) {
     // Utilizza il servizio TranslateService per impostare la lingua
     this.translate.use(language);
   }
